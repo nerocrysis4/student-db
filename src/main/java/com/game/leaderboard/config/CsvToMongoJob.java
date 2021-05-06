@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@Configuration
+//@Configuration
 public class CsvToMongoJob {
 
     @Autowired
