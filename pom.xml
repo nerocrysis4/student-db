@@ -8,8 +8,8 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.game</groupId>
-	<artifactId>leaderboard</artifactId>
+	<groupId>com.student</groupId>
+	<artifactId>details</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>leaderboard</name>
 	<description>Leaderboard Details</description>
