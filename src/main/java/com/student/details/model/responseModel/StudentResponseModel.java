@@ -4,8 +4,9 @@ import com.student.details.model.collection.Student;
 import com.student.details.model.collection.Subject;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,14 +18,16 @@ public class StudentResponseModel {
     private int age;
     private List<String> address;
     private Map<String, Integer> subjects;
-    public static StudentResponseModel mapStudent(Student student, List<Subject> subjects){
-        if(student == null)
+
+    public static Flux<StudentResponseModel> mapStudent(Flux<Student> student) {
+        if (student == null)
             return null;
-        StudentResponseModel user = new StudentResponseModel();
-        user.setName(student.getName());
-        user.setAge(student.getAge());
-        user.setAddress(student.getAddress());
-        user.setSubjects(subjects.stream().collect(Collectors.toMap(Subject::getName, Subject::getMarks)));
-        return user;
+        return student.flatMap(obj -> {
+            final StudentResponseModel studentDto = new StudentResponseModel();
+            studentDto.setAge(obj.getAge());
+            studentDto.setAddress(obj.getAddress());
+            studentDto.setSubjects(obj.getSubjects().stream().collect(Collectors.toMap(Subject::getName, Subject::getMarks)));
+            return Mono.just(studentDto);
+        });
     }
 }

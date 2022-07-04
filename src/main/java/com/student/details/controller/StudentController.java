@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/StudentDetails")
@@ -19,14 +20,9 @@ public class StudentController {
     IStudentService service;
 
     @GetMapping("/getData.htm")
-    public ResponseEntity<ApiResultModel> addUser(@RequestParam String studentName) {
-        try{
-            ResponseModel response = service.getStudentByName(studentName);
-            return new ResponseEntity<ApiResultModel>(new ApiResultModel(false, response.getMsg(), response), HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<ApiResultModel>(new ApiResultModel(true, e.getMessage()), HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+    public ResponseEntity<Mono<ApiResultModel>> getData(@RequestParam String studentName) {
+        Mono<ResponseModel> response = service.getStudentByName(studentName);
+        Mono<ApiResultModel> apiResultModelMono =  response.flatMap(obj -> Mono.just(new ApiResultModel(false, obj.getMsg(), obj)));
+        return new ResponseEntity<>(apiResultModelMono, HttpStatus.OK);
     }
-
 }

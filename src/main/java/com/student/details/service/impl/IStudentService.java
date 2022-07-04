@@ -1,9 +1,10 @@
 package com.student.details.service.impl;
 
 import com.student.details.model.response.ResponseModel;
+import reactor.core.publisher.Mono;
 
 public interface IStudentService {
 
-    ResponseModel getStudentByName(String name);
+    Mono<ResponseModel> getStudentByName(String name);
 
 }

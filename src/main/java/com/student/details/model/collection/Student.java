@@ -17,6 +17,6 @@ public class Student {
     private String name;
     private int age;
     private List<String> address;
-    private List<String> subjects;
+    private List<Subject> subjects;
 
 }

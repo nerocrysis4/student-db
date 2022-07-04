@@ -1,11 +1,13 @@
 package com.student.details.repo;
 
 import com.student.details.model.collection.Student;
+import com.student.details.model.collection.Subject;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 @Repository
-public interface IStudentRepo extends ReactiveCrudRepository<Student, String> {
-    Flux<Student> getStudentByName(String name);
+public interface ISubjectRepo extends ReactiveCrudRepository<Subject, String> {
+    List<Subject> getSubjectByIds(List<String> ids);
 }
