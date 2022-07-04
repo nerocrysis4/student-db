@@ -5,7 +5,6 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IGameRepo extends ReactiveCrudRepository<Student, String> {
-
+public interface IStudentRepo extends ReactiveCrudRepository<Student, String> {
 
 }

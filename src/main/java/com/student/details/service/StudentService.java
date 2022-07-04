@@ -5,13 +5,13 @@ import com.student.details.model.collection.Subject;
 import com.student.details.model.responseModel.StudentResponseModel;
 import com.student.details.model.response.ResponseModel;
 import com.student.details.repo.StudentRepo;
-import com.student.details.service.impl.IGameService;
+import com.student.details.service.impl.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class GameService implements IGameService {
+public class StudentService implements IStudentService {
 
     @Autowired
     StudentRepo repository;

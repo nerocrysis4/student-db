@@ -2,7 +2,7 @@ package com.student.details.controller;
 
 import com.student.details.model.response.ApiResultModel;
 import com.student.details.model.response.ResponseModel;
-import com.student.details.service.impl.IGameService;
+import com.student.details.service.impl.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
 
     @Autowired
-    IGameService service;
+    IStudentService service;
 
     @GetMapping("/getData.htm")
     public ResponseEntity<ApiResultModel> addUser(@RequestParam String studentName) {
